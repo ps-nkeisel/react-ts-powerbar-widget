@@ -1,0 +1,128 @@
+{
+  "name": "powerbar",
+  "version": "2.3.0",
+  "description": "Powerbar widget",
+  "main": "app/index.tsx",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --config ./webpack.config.js --env.development --mode development",
+    "dev": "npm run start",
+    "prebuild": "rimraf ./dist",
+    "build": "npm run lint && rimraf ./dist && NODE_ENV=production webpack --env.production --color --progress",
+    "lint": "tsc --noEmit --project tsconfig.json --skipLibCheck && tslint --config tslint.json --project tsconfig.json",
+    "test": "API_URL=http://api.test jest --detectOpenHandles",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:updateSnapshot": "API_URL=http://api.test jest --detectOpenHandles --updateSnapshot",
+    "format": "prettier --write 'app/**/**.{ts,tsx}'"
+  },
+  "keywords": [
+    "shares",
+    "widget"
+  ],
+  "license": "Apache-2.0",
+  "alias": {
+    "react": "./tools/inferno-compat",
+    "react-dom": "./tools/inferno-compat"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>tools/setupTests.ts"
+    ],
+    "modulePaths": [
+      "app"
+    ],
+    "globals": {
+      "ts-jest": {
+        "isolatedModules": true
+      }
+    },
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "moduleNameMapper": {
+      "~/(.*)$": "<rootDir>/app/$1"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && npm run lint"
+    }
+  },
+  "dependencies": {
+    "create-inferno-context": "^0.2.4",
+    "inferno": "^7.3.1",
+    "inferno-compat": "^7.3.1",
+    "js-cookie": "^2.2.1",
+    "polished": "^3.4.1",
+    "ramda": "^0.26.1",
+    "react": "^16.9.0",
+    "react-app-polyfill": "^1.0.2",
+    "react-dom": "^16.9.0",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.3.2",
+    "typesafe-actions": "^4.4.2",
+    "url-search-params-polyfill": "^7.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/ismobilejs": "^0.4.1",
+    "@types/jest": "^24.0.18",
+    "@types/js-cookie": "^2.2.4",
+    "@types/node": "^12.7.4",
+    "@types/ramda": "^0.26.21",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@types/react-redux": "7.1.2",
+    "@types/styled-components": "^4.1.18",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.6",
+    "babel-plugin-lodash": "^3.3.4",
+    "duplicate-package-checker-webpack-plugin": "^3.0.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
+    "html-webpack-inline-source-plugin": "0.0.10",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "jest-styled-components": "^6.3.3",
+    "nwb": "^0.23.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "terser-webpack-plugin": "^1.4.1",
+    "ts-jest": "^24.0.2",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-loader": "^3.5.4",
+    "tslint-react": "^4.0.0",
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "typescript": "^3.6.2"
+  }
+}

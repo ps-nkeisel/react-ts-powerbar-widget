@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": { "ie": "11" },
+        "useBuiltIns": "entry",
+        "corejs": 3,
+        "modules": false
+      }
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-object-rest-spread", { "useBuiltIns": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-transform-runtime", { "helpers": false, "regenerator": true }],
+    "babel-plugin-styled-components",
+    "babel-plugin-lodash"
+  ],
+  "env": {
+    "build": {
+      "ignore": ["**/*.test.tsx", "**/*.test.ts", "**/*.story.tsx", "__snapshots__", "__tests__", "__stories__"]
+    }
+  }
+}
